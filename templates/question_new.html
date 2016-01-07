@@ -1,0 +1,17 @@
+{% from '_formhelpers.html' import render_field %}
+
+{% extends 'layout.html' %}
+{% block body %}
+<h1>New Question</h1>
+
+<form action="{{url_for('questions')}}" method="post">
+  {{ render_field(form.category) }}
+  {{ render_field(form.question) }}
+  {{ render_field(form.option_a) }}
+  {{ render_field(form.option_b) }}
+  {{ render_field(form.option_c) }}
+  {{ render_field(form.option_d) }}
+  {{ render_field(form.answer) }}
+  <input type="submit" value="Submit" />
+</form>
+{% endblock %}

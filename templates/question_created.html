@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Question Successfuly Created</h1>
+
+<p>Here is what you asked:</p>
+
+<ul>
+  <li>Category: {{ question.category }}</li>
+  <li>Question: {{ question.question }}</li>
+  <li>Option A: {{ question.option_a }}</li>
+  <li>Option B: {{ question.option_b }}</li>
+  <li>Option C: {{ question.option_c }}</li>
+  <li>Option D: {{ question.option_d }}</li>
+  <li>Answer: {{ question.answer }}</li>
+</ul>
+{% endblock %}
