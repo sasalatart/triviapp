@@ -56,3 +56,12 @@ class NewQuestionForm(Form):
                                   ('c', 'C'),
                                   ('d', 'D')],
                          validators=[validators.Required()])
+
+
+class AnswerForm(Form):
+    answer = SelectField('Answer',
+                         choices=[('a', 'A'),
+                                  ('b', 'B'),
+                                  ('c', 'C'),
+                                  ('d', 'D')],
+                         validators=[validators.Required()])

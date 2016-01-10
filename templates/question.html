@@ -1,0 +1,20 @@
+{% from '_formhelpers.html' import render_field %}
+
+{% extends 'layout.html' %}
+{% block body %}
+
+<h1>Question #{{ question.id }}</h1>
+
+<h3>{{ question.question }}</h3>
+
+<h4>A) {{ question.option_a }}</h4>
+<h4>B) {{ question.option_b }}</h4>
+<h4>C) {{ question.option_c }}</h4>
+<h4>D) {{ question.option_d }}</h4>
+
+<form method="post">
+  {{ render_field(form.answer) }}
+  <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
