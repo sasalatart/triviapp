@@ -3,19 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>Triviapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/app.css') }}">
   </head>
-  <body>
+  <body class="ui container">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        <ul class="flashes">
-          {% for category, message in messages %}
-            <li class={{ category }}>{{ message }}</li>
-          {% endfor %}
-        </ul>
+        {% for category, message in messages %}
+          <div class="ui massive {{ category }} message">
+            <i class="close icon"></i>
+            <div class="header">
+              {{ message }}
+            </div>
+          </div>
+        {% endfor %}
       {% endif %}
     {% endwith %}
 
     {% block body %}
     {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js" charset="utf-8"></script>
+    <script src="{{ url_for('static', filename='scripts/app.js') }}" charset="utf-8"></script>
   </body>
 </html>

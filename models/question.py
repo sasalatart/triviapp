@@ -1,4 +1,4 @@
-from wtforms import Form, TextField, TextAreaField, SelectField, validators
+from wtforms import Form, TextField, SelectField, HiddenField, validators
 
 
 class Question:
@@ -35,19 +35,19 @@ class NewQuestionForm(Form):
                                     ('words', 'Words')],
                            validators=[validators.Required()])
 
-    question = TextAreaField('Question',
-                             validators=[validators.Required(),
-                                         validators.Length(min=3, max=200)])
-    option_a = TextField('A',
+    question = TextField('Question',
+                         validators=[validators.Required(),
+                                     validators.Length(min=3, max=200)])
+    option_a = TextField('Option A',
                          validators=[validators.Required(),
                                      validators.Length(min=1, max=200)])
-    option_b = TextField('B',
+    option_b = TextField('Option B',
                          validators=[validators.Required(),
                                      validators.Length(min=1, max=200)])
-    option_c = TextField('C',
+    option_c = TextField('Option C',
                          validators=[validators.Required(),
                                      validators.Length(min=1, max=200)])
-    option_d = TextField('D',
+    option_d = TextField('Option D',
                          validators=[validators.Required(),
                                      validators.Length(min=1, max=200)])
     answer = SelectField('Answer',
@@ -59,9 +59,8 @@ class NewQuestionForm(Form):
 
 
 class AnswerForm(Form):
-    answer = SelectField('Answer',
-                         choices=[('a', 'A'),
-                                  ('b', 'B'),
-                                  ('c', 'C'),
-                                  ('d', 'D')],
-                         validators=[validators.Required()])
+    answer = HiddenField('Answer',
+                         validators=[validators.Required(),
+                                     validators.AnyOf(['a', 'b', 'c', 'd'],
+                                                      message=u'Invalid value, must be one of: %(values)s',
+                                                      values_formatter=None)])

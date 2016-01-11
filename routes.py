@@ -31,10 +31,10 @@ def question(id):
         return render_template('question.html', question=question, form=form)
     elif request.method == 'POST' and form.validate():
         if request.form['answer'] == question.answer:
-            flash('Correct!', 'success')
+            flash('Correct!', 'positive')
             return randomQuestion()
         else:
-            flash('Wrong!', 'error')
+            flash('Wrong Answer!', 'negative')
             return randomQuestion()
     else:
         return render_template('invalid_request.html')
@@ -59,8 +59,10 @@ def questions():
                             form.answer.data)
         r.sadd('question:ids', question.id)
         r.set('question:' + str(question.id), pickle.dumps(question))
-        return render_template('question_created.html', question=question)
+        flash('Question successfully created!', 'positive')
+        return render_template('index.html')
     elif request.method == 'POST' and not form.validate():
+        flash('Oops, your submitted question appears to be invalid.', 'negative')
         return render_template('question_new.html', form=form)
     else:
         return render_template('invalid_request.html')

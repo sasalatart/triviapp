@@ -3,18 +3,68 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-<h1>Question #{{ question.id }}</h1>
+<h1 class="ui center aligned massive header">
+  Question #{{ question.id }}
+  <div class="sub header">
+    {{ question.category }}
+  </div>
+</h1>
 
-<h3>{{ question.question }}</h3>
+<h3 class="horizontal-center">
+  {{ question.question }}
+</h3>
 
-<h4>A) {{ question.option_a }}</h4>
-<h4>B) {{ question.option_b }}</h4>
-<h4>C) {{ question.option_c }}</h4>
-<h4>D) {{ question.option_d }}</h4>
+<div class="ui four stackable link cards">
+  <div class="ui answer card" data-answer="a">
+    <div class="center aligned content">
+      <div class="header">
+        A
+      </div>
+      <div class="description">
+        {{ question.option_a }}
+      </div>
+    </div>
+  </div>
 
-<form method="post">
-  {{ render_field(form.answer) }}
-  <input type="submit" value="Submit">
+  <div class="ui answer card" data-answer="b">
+    <div class="center aligned content">
+      <div class="header">
+        B
+      </div>
+      <div class="description">
+        {{ question.option_b }}
+      </div>
+    </div>
+  </div>
+
+  <div class="ui answer card" data-answer="c">
+    <div class="center aligned content">
+      <div class="header">
+        C
+      </div>
+      <div class="description">
+        {{ question.option_c }}
+      </div>
+    </div>
+  </div>
+
+  <div class="ui answer card" data-answer="d">
+    <div class="center aligned content">
+      <div class="header">
+        D
+      </div>
+      <div class="description">
+        {{ question.option_d }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<form method="post" class="ui form">
+  <div class="hidden">
+    {{ render_field(form.answer) }}
+  </div>
+  <input type="submit" value="Submit" class="ui fluid button">
 </form>
 
 {% endblock %}

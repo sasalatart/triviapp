@@ -1,0 +1,65 @@
+html,
+body {
+  background: linear-gradient(#444b6e, #708b75);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title {
+  font-size: 5em;
+  line-height: 1.25em;
+}
+
+.ui.answer.card {
+  background-color: white;
+}
+
+h1,
+h1 .sub.header,
+.ui.form .field>label {
+  color: white !important;
+}
+
+h1,
+.ui.message {
+  margin-top: 2em !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.hidden + input {
+  margin-top: 1em !important;
+}
+
+.errors {
+  margin: 0;
+  padding: 0;
+}
+
+.errors li {
+  color: #e0b4b4;
+  list-style-type: none;
+}
