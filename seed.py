@@ -4,8 +4,6 @@ from db import r
 sys.path.append('models')
 from question import Question
 
-r.flushall()
-
 Question(category='arts',
          question='What nationality was Chopin?',
          option_a='Russian',
