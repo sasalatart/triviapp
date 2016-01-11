@@ -11,8 +11,8 @@ def index():
 
 
 @app.route('/randomQuestion')
-def randomQuestion():
-    return redirect(url_for('question', id=Question.randomID()))
+def random_question():
+    return redirect(url_for('question', id=Question.random_id()))
 
 
 @app.route('/question/<id>', methods=['GET', 'POST'])
@@ -24,7 +24,7 @@ def question(id):
     elif request.method == 'POST' and form.validate():
         if request.form['answer'] == question.answer:
             flash('Correct!', 'positive')
-            return randomQuestion()
+            return random_question()
         else:
             flash('Wrong Answer!', 'negative')
             return render_template('question.html', question=question, form=form, amount=Question.size())
@@ -33,7 +33,7 @@ def question(id):
 
 
 @app.route('/questions/new', methods=['GET'])
-def newQuestion():
+def new_question():
     form = NewQuestionForm(request.form)
     if request.method == 'GET':
         return render_template('question_new.html', form=form, amount=Question.size())

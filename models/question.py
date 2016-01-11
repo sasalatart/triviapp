@@ -25,7 +25,7 @@ class Question:
         return pickle.loads(r.get('question:' + str(id)))
 
     @staticmethod
-    def randomID():
+    def random_id():
         return r.srandmember('question:ids')
 
     @staticmethod
