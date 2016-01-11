@@ -27,7 +27,7 @@ def question(id):
             return randomQuestion()
         else:
             flash('Wrong Answer!', 'negative')
-            return randomQuestion()
+            return render_template('question.html', question=question, form=form, amount=Question.size())
     else:
         return render_template('invalid_request.html')
 
