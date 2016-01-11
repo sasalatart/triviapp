@@ -1,13 +1,11 @@
+import pickle
 from wtforms import Form, TextField, SelectField, HiddenField, validators
-
+from db import r
 
 class Question:
-    questions_id = 0
+    current_id = 0
 
     def __init__(self, category, question, option_a, option_b, option_c, option_d, answer):
-        Question.questions_id += 1
-
-        self.id = Question.questions_id
         self.category = category
         self.question = question
         self.option_a = option_a
@@ -15,6 +13,24 @@ class Question:
         self.option_c = option_c
         self.option_d = option_d
         self.answer = answer
+
+    def save(self):
+        self.id = Question.current_id
+        r.sadd('question:ids', self.id)
+        r.set('question:' + str(self.id), pickle.dumps(self))
+        Question.current_id += 1
+
+    @staticmethod
+    def find(id):
+        return pickle.loads(r.get('question:' + str(id)))
+
+    @staticmethod
+    def randomID():
+        return r.srandmember('question:ids')
+
+    @staticmethod
+    def size():
+        return r.scard('question:ids')
 
 
 class NewQuestionForm(Form):
