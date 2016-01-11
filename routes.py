@@ -28,7 +28,7 @@ def question(id):
     form = AnswerForm(request.form)
     question = pickle.loads(r.get('question:' + id))
     if request.method == 'GET' or (request.method == 'POST' and not form.validate()):
-        return render_template('question.html', question=question, form=form)
+        return render_template('question.html', question=question, form=form, amount=getAmount())
     elif request.method == 'POST' and form.validate():
         if request.form['answer'] == question.answer:
             flash('Correct!', 'positive')
@@ -44,7 +44,7 @@ def question(id):
 def newQuestion():
     form = NewQuestionForm(request.form)
     if request.method == 'GET':
-        return render_template('question_new.html', form=form)
+        return render_template('question_new.html', form=form, amount=getAmount())
     else:
         return render_template('invalid_request.html')
 
@@ -63,6 +63,9 @@ def questions():
         return render_template('index.html')
     elif request.method == 'POST' and not form.validate():
         flash('Oops, your submitted question appears to be invalid.', 'negative')
-        return render_template('question_new.html', form=form)
+        return render_template('question_new.html', form=form, amount=getAmount())
     else:
         return render_template('invalid_request.html')
+
+def getAmount():
+    return r.scard('question:ids')
