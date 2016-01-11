@@ -2,7 +2,7 @@ $('.message .close')
   .on('click', function() {
     $(this)
       .closest('.message')
-      .transition('fade');
+      .remove();
   });
 
 $('.ui.answer.card')

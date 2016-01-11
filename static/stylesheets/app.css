@@ -28,7 +28,7 @@ body {
 
 .main-title {
   font-size: 5em;
-  line-height: 1.25em;
+  line-height: 1.5em;
 }
 
 .ui.answer.card {
@@ -43,7 +43,11 @@ h1 .sub.header,
 
 h1,
 .ui.message {
-  margin-top: 2em !important;
+  margin-top: 3.5em !important;
+}
+
+.ui.message + h1 {
+  margin: 0 !important;
 }
 
 .hidden {
