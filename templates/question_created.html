@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="ui center aligned massive header">
+  Your New Question Has Been Submitted
+</h1>
+
+<table class="ui inverted table">
+  <tbody>
+    <tr>
+      <td class="two wide column">Question</td>
+      <td>{{ question.question }}</td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>{{ question.category }}</td>
+    </tr>
+    <tr>
+      <td>Option A</td>
+      <td>{{ question.option_a }}</td>
+    </tr>
+    <tr>
+      <td>Option B</td>
+      <td>{{ question.option_b }}</td>
+    </tr>
+    <tr>
+      <td>Option C</td>
+      <td>{{ question.option_c }}</td>
+    </tr>
+    <tr>
+      <td>Option D</td>
+      <td>{{ question.option_d }}</td>
+    </tr>
+    <tr>
+      <td>Answer</td>
+      <td>{{ question.answer }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% include 'menu.html' %}
+{% endblock %}

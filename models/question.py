@@ -23,7 +23,10 @@ class Question:
 
     @staticmethod
     def find(id):
-        return pickle.loads(r.get('question:' + str(id)))
+        if r.sismember('question:ids', str(id)):
+            return pickle.loads(r.get('question:' + str(id)))
+        else:
+            return None
 
     @staticmethod
     def random_id():

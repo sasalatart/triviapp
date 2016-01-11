@@ -12,13 +12,21 @@ def index():
 
 @app.route('/randomQuestion')
 def random_question():
-    return redirect(url_for('question', id=Question.random_id()))
+    if Question.random_id():
+        return redirect(url_for('question', id=Question.random_id()))
+    else:
+        flash('No questions found! Please create a new one.', 'negative')
+        return new_question()
 
 
 @app.route('/question/<id>', methods=['GET', 'POST'])
 def question(id):
     form = AnswerForm(request.form)
     question = Question.find(id)
+
+    if not question:
+        return random_question()
+
     if request.method == 'GET' or (request.method == 'POST' and not form.validate()):
         return render_template('question.html', question=question, form=form, amount=Question.size())
     elif request.method == 'POST' and form.validate():
@@ -51,7 +59,7 @@ def questions():
                             form.answer.data)
         question.save()
         flash('Question successfully created!', 'positive')
-        return render_template('index.html')
+        return render_template('question_created.html', question=question, amount=Question.size())
     elif request.method == 'POST' and not form.validate():
         flash('Oops, your submitted question appears to be invalid.', 'negative')
         return render_template('question_new.html', form=form, amount=Question.size())
