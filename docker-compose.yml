@@ -1,0 +1,10 @@
+redis_db:
+  image: redis:3.0
+
+web:
+  build: .
+  command: python app.py
+  ports:
+    - '80:5000'
+  links:
+    - redis_db
