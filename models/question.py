@@ -3,8 +3,6 @@ from wtforms import Form, TextField, SelectField, HiddenField, validators
 from db import r
 
 class Question:
-    current_id = int(r.get('question:next_id') or 1)
-
     def __init__(self, category, question, option_a, option_b, option_c, option_d, answer):
         self.category = category
         self.question = question
@@ -15,11 +13,10 @@ class Question:
         self.answer = answer
 
     def save(self):
-        self.id = Question.current_id
+        self.id = int(r.get('question:next_id') or 1)
         r.sadd('question:ids', self.id)
         r.set('question:' + str(self.id), pickle.dumps(self))
-        Question.current_id += 1
-        r.set('question:next_id', Question.current_id)
+        r.set('question:next_id', int(r.get('question:next_id') or 1) + 1)
 
     @staticmethod
     def find(id):
