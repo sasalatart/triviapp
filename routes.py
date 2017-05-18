@@ -1,7 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, url_for
 from app import app
-import sys
-sys.path.append('models')
 from question import Question, NewQuestionForm, AnswerForm
 
 

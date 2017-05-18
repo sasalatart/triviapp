@@ -2,6 +2,7 @@ import pickle
 from wtforms import Form, TextField, SelectField, HiddenField, validators
 from db import r
 
+
 class Question:
     def __init__(self, category, question, option_a, option_b, option_c, option_d, answer):
         self.category = category

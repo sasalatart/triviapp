@@ -1,8 +1,13 @@
+# -*- coding: utf-8 -*-
+
 import os
 import sys
+
+sys.path.insert(0, 'models')
+
 from db import r
-sys.path.append('models')
 from question import Question
+
 
 Question(category='arts',
          question='What nationality was Chopin?',
