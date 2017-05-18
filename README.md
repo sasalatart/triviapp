@@ -1,46 +1,41 @@
 # Triviapp
 
-> My first Python Flask application
+> Trivia application built with Python Flask.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](sasalatart/triviapp)
+[![](https://images.microbadger.com/badges/version/sasalatart/triviapp.svg)](https://microbadger.com/images/sasalatart/triviapp)
+[![](https://images.microbadger.com/badges/image/sasalatart/triviapp.svg)](https://microbadger.com/images/sasalatart/triviapp)
+[![Code Climate](https://codeclimate.com/github/sasalatart/triviapp/badges/gpa.svg)](https://codeclimate.com/github/sasalatart/triviapp)
 
 ### Setup
 
-##### Development
+#### Development
 
-1. Make sure that at least [Python 3.4.3](https://www.python.org/downloads/) and
-[redis](http://redis.io/download) are installed.
+1. Make sure that at least [Python 3.4.3](https://www.python.org/downloads/) and [redis](http://redis.io/download) are installed.
 2. Clone and cd into this repository
 3. Set the environment variables:
-  - SECRET_KEY ('napoleon' should work)
-  - SERVER_HOST ('localhost' should work)
-  - SERVER_PORT ('5000' should work)
-  - TRIVIAPP_DB_HOST ('localhost' should work)
-  - TRIVIAPP_DB_PORT ('6379' should work)
-  - TRIVIAPP_DB_NAME ('0' should work)
+  - HOST ('0.0.0.0' by default)
+  - PORT ('5000' by default)
+  - DB_HOST ('localhost' should work)
+  - DB_PORT ('6379' by default)
+  - DB_NAME ('0' by default)
 4. Run `pip install -r requirements.txt`
 5. Open another shell instance and run `redis-server`
 6. Run `python app.py`
 
 In order to populate the initial database, you may run `python seed.py`.
 
-##### Docker
+#### Docker
 
 ```sh
-# Build
-$ docker-compose build
+# Pull and run the application and redis
+$ docker run -d --name=redis_db redis:3.0
 
-# Run
-$ docker-compose up -d
+$ docker run -d --name=triviapp -p 80:5000 --link=redis_db:redis_db sasalatart/triviapp
 
-# Seed
-$ docker-compose run web python seed.py
+# Setup the database
+$ docker exec triviapp python db/seed.py
 ```
 
-The server's machine should now be redirecting its port 80 to the container's
-port 5000. Remember to set the appropriate environment variables if the server
-is being shared with other applications. If that is not the case, the default
-values should be ok.
-
-To stop:
-```sh
-$ docker-compose stop
-```
+The server's machine should now be redirecting its port 80 to the container's port 5000.
