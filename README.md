@@ -12,17 +12,12 @@
 
 #### Development
 
-1. Make sure that at least [Python 3.4.3](https://www.python.org/downloads/) and [redis](http://redis.io/download) are installed.
-2. Clone and cd into this repository
-3. Set the environment variables:
-  - HOST ('0.0.0.0' by default)
-  - PORT ('5000' by default)
-  - DB_HOST ('localhost' should work)
-  - DB_PORT ('6379' by default)
-  - DB_NAME ('0' by default)
-4. Run `pip install -r requirements.txt`
-5. Open another shell instance and run `redis-server`
-6. Run `python app.py`
+1. Clone and cd into this repository
+2. Set the environment variables:
+  - `DB_HOST` ('localhost' should work), or alternatively `DB_URL`
+3. Run `pip install -r requirements.txt`
+4. Turn on your local redis server if that is the case
+5. Run `python app.py`
 
 In order to populate the initial database, you may run `python seed.py`.
 
